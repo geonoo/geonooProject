@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<property name="geonooProject_LOG" value="D:/logs/geonooProjectlogs" />
+
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>
+				%d{HH:mm:ss.SSS} %-5level [%logger-%method:%L] %msg%n
+			</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="FILE-AUDIT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${geonooProject_LOG}/geonooProject.log</file>
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>
+				%d{HH:mm:ss.SSS} %-5level [%logger-%method:%L] %msg%n
+			</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${geonooProject_LOG}/geonooProject.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+		</rollingPolicy>
+
+	</appender>
+	
+	<root level="info">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE-AUDIT" />
+	</root>
+	
+<!-- 	<root level="debug"> -->
+<!-- 		<appender-ref ref="CONSOLE" /> -->
+<!--    	</root> -->
+   
+<!-- 	<logger name="jdbc.sqlonly" level="DEBUG"/> -->
+
+</configuration>
